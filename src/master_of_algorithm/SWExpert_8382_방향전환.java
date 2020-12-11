@@ -76,5 +76,4 @@ public class SWExpert_8382_방향전환 {
 			System.out.println("#" + tc + " " + max);
 		}
 	}
-
 }
