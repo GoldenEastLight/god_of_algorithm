@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * BlockChain Utils
  *
- * @author akageun
+ * hash를 생성하는 class
  */
 public class BcUtils {
 

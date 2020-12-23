@@ -6,7 +6,9 @@ import java.util.Date;
 /**
  * Block Class
  *
- * @author akageun
+ * BlockChain을 구성하는 Block 을 생성한다,
+ * Block은 BlockChain 내에서 고유한 Hash(Digital Signature)값을 가지고 있다.
+ * Block 내에는 이전 Block의 Hash 값과 데이터들이 포함되어 있다.
  */
 public class Block {
 

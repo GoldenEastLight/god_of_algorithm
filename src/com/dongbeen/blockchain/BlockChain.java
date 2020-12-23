@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * BlockChain 메인 클래스
  *
- * @author akageun
+ * blockchain을 만드는 class
  */
 public class BlockChain {
 
