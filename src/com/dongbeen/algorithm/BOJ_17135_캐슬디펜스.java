@@ -1,5 +1,5 @@
 
-package master_of_algorithm;
+package com.dongbeen.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
