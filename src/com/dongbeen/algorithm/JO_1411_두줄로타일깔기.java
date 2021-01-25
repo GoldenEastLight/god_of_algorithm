@@ -3,7 +3,7 @@ package com.dongbeen.algorithm;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class JungOl_1411_두줄로타일깔기 {
+public class JO_1411_두줄로타일깔기 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
