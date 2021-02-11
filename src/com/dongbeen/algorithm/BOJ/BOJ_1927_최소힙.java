@@ -16,5 +16,17 @@ public class BOJ_1927_최소힙 {
 		N = sc.nextInt();
 
 		PriorityQueue<Integer> queue = new PriorityQueue<>();
+		
+		for(int n = 0; n < N; n++) {
+			int temp = sc.nextInt();
+			if(temp == 0)
+				if(queue.isEmpty())
+					System.out.println("0");
+				else
+					System.out.println(queue.poll());
+			else
+				queue.add(temp);
+		}
+		sc.close();
 	}
 }
