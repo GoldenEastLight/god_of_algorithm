@@ -3,7 +3,7 @@ package com.dongbeen.algorithm.BOJ;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BOJ_3190_snake {
+public class BOJ_3190_뱀 {
 	int N;
 	int K;
 	int L;
@@ -25,7 +25,7 @@ public class BOJ_3190_snake {
 	}
 
 	public static void main(String[] args) {
-		BOJ_3190_snake m = new BOJ_3190_snake();
+		BOJ_3190_뱀 m = new BOJ_3190_뱀();
 		m.service();
 	}
 
