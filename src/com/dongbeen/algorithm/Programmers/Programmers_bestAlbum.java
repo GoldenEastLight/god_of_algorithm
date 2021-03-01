@@ -1,11 +1,11 @@
-package com.dongbeen.algorithm;
+package com.dongbeen.algorithm.Programmers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeMap;
 
-public class programmers_bestAlbum {
+public class Programmers_bestAlbum {
 	public int[] solution(String[] genres, int[] plays) {
 		int[] answer = {};
 
