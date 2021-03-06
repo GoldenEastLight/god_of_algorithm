@@ -1,3 +1,8 @@
+/**
+ * BOJ 13300번 방 배정
+ * 학년별로 소년들의 수와 소녀들의 수를 세고 방크기를 고려해서 방을 늘려가는 방법으로 풀었습니다.
+ */
+
 package com.dongbeen.algorithm.BOJ;
 
 import java.io.BufferedReader;
