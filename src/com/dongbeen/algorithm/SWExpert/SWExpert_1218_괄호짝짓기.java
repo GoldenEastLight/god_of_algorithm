@@ -13,7 +13,8 @@ public class SWExpert_1218_괄호짝짓기 {
 			int num = sc.nextInt();
 			char[] data = sc.next().toCharArray();
 			Stack<Character> s = new Stack<>();
-			int result = 1;
+			int result = 1; // 정상적일 때
+			
 			outer: for (char c : data) {
 				switch (c) {
 				case '(':
@@ -24,7 +25,7 @@ public class SWExpert_1218_괄호짝짓기 {
 					break;
 				default:
 					if (check(s, c) == false) {
-						result = 0;
+						result = 0; // 잘못 된 경우
 						break outer;
 					}
 				}
