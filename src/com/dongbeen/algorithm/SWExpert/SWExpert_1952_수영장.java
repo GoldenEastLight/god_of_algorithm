@@ -3,13 +3,13 @@ package com.dongbeen.algorithm.SWExpert;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class SWExpert_1952_SwimmingPool {
+public class SWExpert_1952_수영장 {
 	int[] pay;
 	int[] month;
 	int minCost;
 
 	public static void main(String args[]) throws IOException {
-		SWExpert_1952_SwimmingPool m = new SWExpert_1952_SwimmingPool();
+		SWExpert_1952_수영장 m = new SWExpert_1952_수영장();
 		m.service();
 	}
 

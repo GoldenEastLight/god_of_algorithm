@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class SWExpert_5643_heightSequence {
+public class SWExpert_5643_키순서 {
 	int N;
 	int knowSequenceCnt;
 	boolean[] visited;
 
 	public static void main(String[] args) {
-		SWExpert_5643_heightSequence m = new SWExpert_5643_heightSequence();
+		SWExpert_5643_키순서 m = new SWExpert_5643_키순서();
 		m.service();
 	}
 
@@ -49,10 +49,10 @@ public class SWExpert_5643_heightSequence {
 
 				while (!queue.isEmpty()) {
 					int temp = queue.poll();
-					
+
 					int length = up[temp].size();
-					for(int i = 0; i < length; i++) {
-						if(!visited[up[temp].get(i)]) {
+					for (int i = 0; i < length; i++) {
+						if (!visited[up[temp].get(i)]) {
 							visited[up[temp].get(i)] = true;
 							queue.offer(up[temp].get(i));
 							upCnt++;
@@ -62,10 +62,10 @@ public class SWExpert_5643_heightSequence {
 				queue.offer(n);
 				while (!queue.isEmpty()) {
 					int temp = queue.poll();
-					
+
 					int length = down[temp].size();
-					for(int i = 0; i < length; i++) {
-						if(!visited[down[temp].get(i)]) {
+					for (int i = 0; i < length; i++) {
+						if (!visited[down[temp].get(i)]) {
 							visited[down[temp].get(i)] = true;
 							queue.offer(down[temp].get(i));
 							upCnt++;
