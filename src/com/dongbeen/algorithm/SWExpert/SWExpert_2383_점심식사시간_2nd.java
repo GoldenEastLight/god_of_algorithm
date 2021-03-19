@@ -36,11 +36,11 @@ public class SWExpert_2383_점심식사시간_2nd {
 					}
 				}
 			}
-			// 각 사람별로, 각 계단까지의 거리를 구해자.
+			// 각 사람별로, 각 계단까지의 거리를 구하자.
 			for (int i = 0; i < pCnt; i++) {
 				for (int j = 0; j < sCnt; j++) {
-//					i번 사람과 j번 계단 사이의 거리를 구해서
-//					i번사람의 dist j에다가 적어주자.
+					// i번 사람과 j번 계단 사이의 거리를 구해서
+					// i번사람의 dist j에다가 적어주자.
 					people[i].dist[j] = Math.abs(people[i].r - stairs[j].r) + Math.abs(people[i].c - stairs[j].c) + 1;
 				}
 			}
