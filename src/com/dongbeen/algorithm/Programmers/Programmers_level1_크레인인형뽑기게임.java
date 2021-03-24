@@ -2,7 +2,7 @@ package com.dongbeen.algorithm.Programmers;
 
 import java.util.Stack;
 
-class Solution {
+public class Programmers_level1_크레인인형뽑기게임 {
 	public int solution(int[][] board, int[] moves) {
 		int answer = 0;
 		Stack<Integer> stack = new Stack<>();
