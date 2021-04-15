@@ -6,7 +6,6 @@ public class SWExpert_1949_등산로조성_2nd {
 	static int N;
 	static int K;
 	static int[][] map;
-	static int[][] visited;
 	static int blanc;
 	static int maxLength;
 	static int[] dy = { -1, 1, 0, 0 };
@@ -21,13 +20,14 @@ public class SWExpert_1949_등산로조성_2nd {
 			N = sc.nextInt();
 			K = sc.nextInt();
 			map = new int[N][N];
-			visited = new int[N][N];
 			blanc = Integer.MIN_VALUE;
 			maxLength = Integer.MIN_VALUE;
 
 			for (int r = 0; r < N; r++) {
 				for (int c = 0; c < N; c++) {
 					map[r][c] = sc.nextInt();
+					if (blanc < map[r][c])
+						blanc = map[r][c];
 					blanc = Math.max(blanc, map[r][c]);
 				}
 			}
@@ -60,7 +60,7 @@ public class SWExpert_1949_등산로조성_2nd {
 			int ny = y + dy[i];
 			int nx = x + dx[i];
 
-			if (ny >= 0 && ny < N && nx >= 0 && nx < N && visited[ny][nx] == 0 && map[y][x] > map[ny][nx]) {
+			if (ny >= 0 && ny < N && nx >= 0 && nx < N && map[y][x] > map[ny][nx]) {
 				maxLength = Math.max(maxLength, length + 1);
 				dfs(ny, nx, length + 1);
 			}
