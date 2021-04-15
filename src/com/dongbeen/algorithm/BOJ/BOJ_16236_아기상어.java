@@ -34,7 +34,7 @@ public class BOJ_16236_아기상어 {
 		@Override
 		public int compareTo(Location o) {
 			if (this.y == o.y)
-				return this.y - o.y;
+				return this.x - o.x;
 			else
 				return this.y - o.y;
 		}
