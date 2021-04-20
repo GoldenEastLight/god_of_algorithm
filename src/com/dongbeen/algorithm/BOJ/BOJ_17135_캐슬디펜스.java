@@ -1,128 +1,146 @@
-
 package com.dongbeen.algorithm.BOJ;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class BOJ_17135_캐슬디펜스 {
+	int N, M, D;
+	int[][] map;
+	int[][] copyMap;
+	int[] arr;
+	int[] set;
+	int maxKill;
+	ArrayList<Enemy> enemy;
+	ArrayList<Enemy> archer;
 
-	static int N, M, D;
-
-	static class Enemy {
+	class Enemy {
 		int x, y;
 
-		Enemy(int x, int y) {
-			this.x = x;
+		Enemy(int y, int x) {
 			this.y = y;
+			this.x = x;
 		}
 	}
 
 	public static void main(String[] args) {
+		new BOJ_17135_캐슬디펜스().play();
+	}
+
+	private void play() {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
 		M = sc.nextInt();
 		D = sc.nextInt();
 
-		// 입력받아진 적군의 위치를 객체리스트로 저장
-		ArrayList<Enemy> list = new ArrayList<>();
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (sc.nextInt() == 1) {
-					list.add(new Enemy(i, j));
-				}
-			}
-		}
-		
-		// 조합
-		for (int i = 0; i < M; i++) {
-			for (int j = i + 1; j < M; j++) {
-				for (int k = j + 1; k < M; k++) {
-					// 적들의 위치를 복사 : 한텀이 다 끝나고 나서 적들을 제거해야 한다.
-					ArrayList<Enemy> temp = new ArrayList<>();
-					for (Enemy e : list) {
-						temp.add(new Enemy(e.x, e.y));
-					}
-					
-					// 게임 시작
-					int r = game(temp, new int[] { i, j, k });
-//					System.out.println(r);
-					ans = Math.max(r, ans);
-				}
-			}
-		}
-		System.out.println(ans);
+		// 맨 위에는 궁수가 배치된다.
+		map = new int[N + 1][M];
+		for (int i = 0; i < N; i++)
+			for (int j = 0; j < M; j++)
+				map[i][j] = sc.nextInt();
+
+		arr = new int[M];
+
+		for (int i = 0; i < M; i++)
+			arr[i] = i;
+
+		set = new int[3];
+		maxKill = 0;
+
+		combination(0, 0);
+
+		System.out.println(maxKill);
 		sc.close();
 	}
 
-	static int ans = 0;
-
-	static int game(List<Enemy> list, int[] pos) {
-		int cnt = 0;
-		// 적군이 모두 사라질때까지
-		while (list.size() != 0) {
-			List<Enemy> tmp = new ArrayList<>();
-			for (int p : pos) {
-				// 사수로부터 젤 가까운 적군의 위치를 찾아
-				int target = findNear(list, p);
-				// 사정거리내에 닿은 녀석이 없지 않다면
-				if (target != -1) {
-					// 죽일놈으로 추가
-					tmp.add(list.get(target));
+	private void combination(int length, int k) {
+		if (length == 3) {
+			enemy = new ArrayList<>();
+			copyMap = new int[N + 1][M];
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < M; j++) {
+					copyMap[i][j] = map[i][j];
+					if (map[i][j] == 1)
+						enemy.add(new Enemy(i, j));
 				}
 			}
-			// 죽일놈들을 리스트에서 삭제
-			for (Enemy e : tmp) {
-				if (list.remove(e))
-					cnt++;
+			archer = new ArrayList<>();
+			for (int i = 0; i < 3; i++) {
+				copyMap[N][arr[set[i]]] = 2;
+				archer.add(new Enemy(N, set[i]));
 			}
-			// 적군 하강
-			enemyDown(list);
+			game(copyMap);
+
+			return;
 		}
-		return cnt;
+		if (k == arr.length)
+			return;
+
+		set[length] = arr[k];
+		combination(length + 1, k + 1);
+		combination(length, k + 1);
 	}
 
-	static int findNear(List<Enemy> list, int p) {
-		int dist = 98765431;
-		int minW = 50;
-		int res = -1;
-		for (int i = 0; i < list.size(); i++) {
-			Enemy e = list.get(i);
-			int d = N - e.x + Math.abs(p - e.y);
-			// 거리 초과되는 적군은 무시
-			if (d > D)
-				continue;
-			// 알고있던 거리보다 더 가까운 적이 나타나면
-			if (d < dist) {
-				// 적군과의 거리와 그 적군의 가로좌표를 저장
-				dist = d;
-				minW = e.y;
-				res = i;
-			}
-			// 알고있는 가까운 적과 같은 거리를 갖는 적군이 발견되면
-			else if (d == dist) {
-				if (minW > e.y) {
-					// 더 작은 가로 좌표값을 기억
-					minW = e.y;
-					res = i;
+	private void game(int[][] field) {
+		int killCnt = 0;
+
+		// 적이 모두 사라질 때 까지
+		while (enemy.size() != 0) {
+			ArrayList<Enemy> dead = new ArrayList<>();
+			for (int i = 0; i < archer.size(); i++) {
+				int[] dist = new int[enemy.size()];
+				int minDist = Integer.MAX_VALUE;
+
+				for (int j = 0; j < enemy.size(); j++) {
+					dist[j] = distance(archer.get(i), enemy.get(j));
+					minDist = Math.min(minDist, dist[j]);
+				}
+
+				ArrayList<Enemy> shoot = new ArrayList<>();
+
+				// 최소 거리이고 사정거리 안에 들어오면 사격이 가능하다.
+				for (int j = 0; j < enemy.size(); j++)
+					if (dist[j] == minDist)
+						if (dist[j] <= D)
+							shoot.add(enemy.get(j));
+
+				// shoot.size가 0이면 쏠 수 있는 적이 없는 상황, 1이면 바로 죽이고, 1초과하면 x가 가장 작은 적을 죽인다.
+				if (shoot.size() == 0)
+					continue;
+				else if (shoot.size() == 1)
+					dead.add(shoot.get(0));
+				else if (shoot.size() > 1) {
+					int minX = Integer.MAX_VALUE;
+
+					for (int j = 0; j < shoot.size(); j++)
+						minX = Math.min(minX, shoot.get(j).x);
+					for (int j = 0; j < shoot.size(); j++)
+						if (shoot.get(j).x == minX)
+							dead.add(shoot.get(j));
 				}
 			}
-		}
-		return res;
-	}
 
-	static void enemyDown(List<Enemy> list) {
-		for (int i = 0; i < list.size(); i++) {
-			Enemy e = list.get(i);
-			e.x++;
-			if (e.x == N) {
-				list.remove(i);
-				i--;
+			// dead 적들 없앤다.
+			for (int i = 0; i < dead.size(); i++)
+				for (int j = 0; j < enemy.size(); j++)
+					if (dead.get(i).y == enemy.get(j).y && dead.get(i).x == enemy.get(j).x) {
+						enemy.remove(j);
+						killCnt++;
+						break;
+					}
+
+			// 적 한칸씩 성으로 다가옴
+			int c = enemy.size();
+			while (c > 0) {
+				if (enemy.get(0).y + 1 != N)
+					enemy.add(new Enemy(enemy.get(0).y + 1, enemy.get(0).x));
+				enemy.remove(0);
+				c--;
 			}
 		}
+		maxKill = Math.max(maxKill, killCnt);
+	}
+
+	private int distance(Enemy arc, Enemy ene) {
+		return Math.abs(arc.y - ene.y) + Math.abs(arc.x - ene.x);
 	}
 }
-
-
-
-
