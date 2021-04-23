@@ -21,8 +21,8 @@ public class BOJ_20058_마법사상어와파이어스톰 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
-		Q = Integer.parseInt(st.nextToken());
-		mapSize = (int) Math.pow(2, N);
+		Q = Integer.parseInt(st.nextToken()); // 파이어스톰 Q번 시전
+		mapSize = (int) Math.pow(2, N); // 맵 크기는 2^N
 		map = new int[mapSize][mapSize];
 		sum = 0;
 
@@ -34,7 +34,7 @@ public class BOJ_20058_마법사상어와파이어스톰 {
 		}
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < Q; i++) {
-			int l = Integer.parseInt(st.nextToken());
+			int l = Integer.parseInt(st.nextToken()); // 파이어스톰 단계
 			spin(l);
 			melt();
 		}
@@ -53,22 +53,22 @@ public class BOJ_20058_마법사상어와파이어스톰 {
 	}
 
 	private void spin(int l) {
-		int loop = mapSize / (int) Math.pow(2, l);
+		int loop = mapSize / (int) Math.pow(2, l); // 맵 크기 / 돌리는 크기만큼 반복해야함
 		int next[][] = new int[mapSize][mapSize];
 
-		int x = 0;
+		int y = 0;
 		// 세로 덩어리
 		for (int i = 0; i < loop; i++) {
-			int y = 0;
+			int x = 0;
 			if (i != 0)
-				x += (int) Math.pow(2, l);
+				y += (int) Math.pow(2, l);
 			// 작은 덩어리
 			for (int j = 0; j < loop; j++) {
 				if (j != 0)
-					y += (int) Math.pow(2, l);
+					x += (int) Math.pow(2, l);
 				for (int a = 0; a < (int) Math.pow(2, l); a++) {
 					for (int b = 0; b < (int) Math.pow(2, l); b++) {
-						next[x + b][y - a + (int) Math.pow(2, l) - 1] = map[x + a][y + b];
+						next[y + b][x - a + (int) Math.pow(2, l) - 1] = map[y + a][x + b];
 					}
 				}
 			}
@@ -86,11 +86,11 @@ public class BOJ_20058_마법사상어와파이어스톰 {
 					int ny = i + dy[k];
 					int nx = j + dx[k];
 
-					if (check(ny, nx))
+					if (check(ny, nx)) // 4방탐색을 해서 주위에 얼음이 몇갠지 확인
 						if (map[ny][nx] >= 1)
 							cnt++;
 				}
-				if (cnt < 3) {
+				if (cnt < 3) { // 주위에 얼음이 3개 미만이면 queue에 넣어준다.
 					qy.offer(i);
 					qx.offer(j);
 				}
@@ -100,7 +100,7 @@ public class BOJ_20058_마법사상어와파이어스톰 {
 		while (!qx.isEmpty()) {
 			int y = qy.poll();
 			int x = qx.poll();
-			map[y][x]--;
+			map[y][x]--; // 얼음 녹인다.
 		}
 	}
 
