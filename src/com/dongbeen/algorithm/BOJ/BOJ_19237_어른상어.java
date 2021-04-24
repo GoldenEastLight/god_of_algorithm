@@ -22,7 +22,7 @@ public class BOJ_19237_어른상어 {
 
 	class Shark {
 		int id, x, y;
-		int dir; // 상, 하 좌, 우
+		int dir; // 상, 하, 좌, 우
 		int[][] priority = new int[5][5];
 
 		Shark(int id, int x, int y) {
