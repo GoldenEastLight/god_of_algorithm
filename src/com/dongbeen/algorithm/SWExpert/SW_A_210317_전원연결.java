@@ -1,4 +1,4 @@
-package com.dongbeen.algorithm;
+package com.dongbeen.algorithm.SWExpert;
 /**
  *  N*N cell을 가진 렉시노스, cell마다 core 또는 전선이 있고, 가장자리에는 전원(Power)이 흐른다.
  *  core와 전원을 연결하는 전선은 직선으로만 설치 가능하다.

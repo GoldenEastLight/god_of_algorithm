@@ -1,4 +1,4 @@
-package com.dongbeen.algorithm;
+package com.dongbeen.algorithm.SWExpert;
 /**
 건강검진 결과 검사자의 몸에 종양이 존재하면 그림과 같이 직사각형(정사각형 포함) 모양으로 매칭되어 표시가 된다.
 검사 결과 N개의 종양이 발견되어 방사선 치료를 계획하고 있으며,
