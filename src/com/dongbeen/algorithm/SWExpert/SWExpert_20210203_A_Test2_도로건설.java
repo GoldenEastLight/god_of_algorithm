@@ -1,4 +1,4 @@
-package com.dongbeen.algorithm;
+package com.dongbeen.algorithm.SWExpert;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Samsung_20210203_A_Test2_도로건설 {
+public class SWExpert_20210203_A_Test2_도로건설 {
 	int T;
 	int W;
 	int H;
@@ -36,7 +36,7 @@ public class Samsung_20210203_A_Test2_도로건설 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Samsung_20210203_A_Test2_도로건설 m = new Samsung_20210203_A_Test2_도로건설();
+		SWExpert_20210203_A_Test2_도로건설 m = new SWExpert_20210203_A_Test2_도로건설();
 		m.service();
 	}
 
