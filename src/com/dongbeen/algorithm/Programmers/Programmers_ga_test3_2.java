@@ -1,11 +1,10 @@
 package com.dongbeen.algorithm.Programmers;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Programmers_gabia3 {
+public class Programmers_ga_test3_2 {
 
 	class CoffeeOrder implements Comparable<CoffeeOrder> {
 		int time;
@@ -27,8 +26,9 @@ public class Programmers_gabia3 {
 		}
 	}
 
-	public Integer[] solution(int N, int[] coffee_times) {
-		ArrayList<Integer> completeOrders = new ArrayList<>(); // 완료된 주문 순서대로 저장할 ArrayList
+	public int[] solution(int N, int[] coffee_times) {
+		int[] answers = new int[coffee_times.length];
+		int ans = 0;
 		Queue<CoffeeOrder> order = new LinkedList<>(); // 주문 받은 순서대로 저장할 Queue
 		PriorityQueue<CoffeeOrder> making = new PriorityQueue<>(); // 커피 추출하는 시간동안 저장해둘 making PriorityQueue
 
@@ -48,7 +48,7 @@ public class Programmers_gabia3 {
 				CoffeeOrder temp = making.poll();
 				temp.time -= tempTime;
 				if (temp.time <= 0) {
-					completeOrders.add(temp.orderNum);
+					answers[ans++] = temp.orderNum;
 					continue;
 				}
 				tempQueue.offer(temp);
@@ -58,14 +58,11 @@ public class Programmers_gabia3 {
 			for (int i = 0; i < tempQueueSize; i++) {
 				making.offer(tempQueue.poll());
 				if (order.isEmpty()) {
-					completeOrders.add(making.poll().orderNum);
+					answers[ans++] = making.poll().orderNum;
 				}
 			}
 		}
 
-		Integer[] answer;
-		answer = completeOrders.toArray(new Integer[completeOrders.size()]);
-
-		return answer;
+		return answers;
 	}
 }

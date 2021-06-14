@@ -2,7 +2,7 @@ package com.dongbeen.algorithm.Programmers;
 
 import java.util.ArrayList;
 
-public class Programmers_gabia2 {
+public class Programmers_ga_test2 {
 	ArrayList<String> good = new ArrayList<>(); // 좋은문자열 넣을 ArrayList
 
 	public int solution(String s) {
