@@ -1,13 +1,13 @@
-package com.dongbeen.algorithm;
+package com.dongbeen.algorithm.Programmers;
 
-public class 웅덩이만들기 {
+public class Programmers_test_웅덩이만들기 {
 	public static void main(String[] args) {
 		int[] bricks = { 1, 2, 5, 3, 1, 0, 2, 3 };
 		int n = 6;
 		int k = 3;
 		// result == 5;
 
-		웅덩이만들기 m = new 웅덩이만들기();
+		Programmers_test_웅덩이만들기 m = new Programmers_test_웅덩이만들기();
 		System.out.println(m.solution(bricks, n, k));
 	}
 
