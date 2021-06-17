@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeMap;
 
-public class Programmers_베스트앨범 {
+public class Programmers_level3_베스트앨범 {
 	public int[] solution(String[] genres, int[] plays) {
 		int[] answer = {};
 
