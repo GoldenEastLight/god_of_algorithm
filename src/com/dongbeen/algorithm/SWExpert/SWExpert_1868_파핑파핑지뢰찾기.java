@@ -3,7 +3,7 @@ package com.dongbeen.algorithm.SWExpert;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class SWExpert_1868_PopingPopingLandMineSearch {
+public class SWExpert_1868_파핑파핑지뢰찾기 {
 	int[][] land;
 	int N, clickCnt;
 	boolean[][] visited;
@@ -11,7 +11,7 @@ public class SWExpert_1868_PopingPopingLandMineSearch {
 	int[] dx = { -1, 0, 1, 1, 1, 0, -1, -1 }; // 좌상, 상, 우상, 우, 우하, 하, 좌하, 좌
 
 	public static void main(String[] args) throws Exception {
-		SWExpert_1868_PopingPopingLandMineSearch m = new SWExpert_1868_PopingPopingLandMineSearch();
+		SWExpert_1868_파핑파핑지뢰찾기 m = new SWExpert_1868_파핑파핑지뢰찾기();
 		m.service();
 	}
 
